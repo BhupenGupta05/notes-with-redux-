@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import { initializeNotes } from "./reducers/noteReducer.js"
 import { setNotes } from "./reducers/noteReducer.js"
 import noteService from './services/notes.js'
 import NewNote from "./components/NewNote"
@@ -11,8 +12,7 @@ const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     console.log('Fetching notes...')
-    noteService.getAll()
-    .then(notes => dispatch(setNotes(notes)))
+    dispatch(initializeNotes())
     console.log('Notes fetched')
   },[])
 
